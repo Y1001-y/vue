@@ -1,16 +1,33 @@
-
-
 <template>
-  <h2> Vite 创建 vue 项目</h2>
-  <p>{{ message }}</p>
+   <div>
+     <!-- 插值 -->
+     <p>姓名：{{ name }}</p >
+     <!-- 属性绑定 -->
+     <img v-bind:src="imgUrl" alt="src\assets\image.png">
+     <!-- 事件 -->
+     <button @click="changeName">修改名字</button>
+     <!-- 双向绑定 -->
+     <input v-model="name"/>
+     <!-- 条件 -->
+     <p v-if="isShow">显示内容</p >
+     <!-- 循环 -->
+     <ul>
+       <li v-for="item in list" :key="item.id">{{ item.title }}</li>
+     </ul>
+   </div>
  </template>
 
  <script setup>
-  let message = "学习 Vue 基础语法"
- </script>
+ import { ref } from 'vue'
+ const name = ref("杨逸")
+ const imgUrl = ref("https://picsum.photos/100")
+ const isShow = ref(true)
+ const list = ref([
+   {id:1, title:"Vue学习1"},
+   {id:2, title:"Vue学习2"}
+ ])
 
-<style>
-h2{
-  color:#42b983;
-}
-</style>
+ const changeName = ()=>{
+   name.value = "李四"
+ }
+ </script>
